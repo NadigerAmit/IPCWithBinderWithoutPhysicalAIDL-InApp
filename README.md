@@ -9,7 +9,8 @@ These IxxxService.java can be distrubuted as raw file or can be wrapped in .jar 
 #### Note: we need to maintain the backward compatibility . 
 
 
-## Terminologies used (copied from https://events.static.linuxfound.org/images/stories/slides/abs2013_gargentas.pdf)
+### Terminologies  
+(copied from https://events.static.linuxfound.org/images/stories/slides/abs2013_gargentas.pdf)
 ### Binder (Framework)
 The overall IPC architecture
 ### Binder Driver
