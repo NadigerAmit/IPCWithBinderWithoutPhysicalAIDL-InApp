@@ -47,3 +47,12 @@ A partial implementation of the AIDL interface that maps transactions to Binder 
 ### Context Manager (a.k.a. servicemanager)
 A special Binder Object with a known handle (registered as handle 0) that is used as a registry/lookup service for other Binder Objects (name → handle mapping)
 Binder Communication a
+
+### meaning of in,outtags in AIDL file 
+
+#### - in: 
+    The default mode; the client passes the parameters to the server for use.
+#### - out: 
+    The client passes a parameter to the server, which serves as a container, discards all the attribute values, fills in the content, and then returns it to the client for further processing.
+#### - 
+    inout: The client passes the parameters to the server, and the server can use the values of the parameters. At the same time, the client can modify the parameters. If it is a collection array, it can modify its internal sub-objects. 
