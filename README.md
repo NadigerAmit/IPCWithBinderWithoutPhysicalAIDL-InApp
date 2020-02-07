@@ -72,3 +72,8 @@ Binder Communication a
         
         EX: before reading from bundle passed via aidl : call bundle.setClassLoader(getClass().getClassLoader());
 
+### Which thread does AIDL calls comes at the reciver end on in the server process :
+        Calls from a remote process are dispatched from a thread pool the platform maintains inside of your own process.
+        We must be prepared for incoming calls from unknown threads, with multiple calls happening at the same time. 
+        In other words, an implementation of an AIDL interface must be completely thread-safe. 
+        Calls made from one thread on same remote object arrive in order on the receiver end.
