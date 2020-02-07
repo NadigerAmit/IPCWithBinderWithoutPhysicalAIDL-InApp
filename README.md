@@ -60,8 +60,8 @@ Binder Communication a
     The client passes the parameters to the server, and the server can use the values of the parameters. 
     At the same time, the client can modify the parameters. If it is a collection array, it can modify its internal sub-objects. 
 ### Meaning of Oneway:
-        By default, the RPC calls from the client are synchronous.  
-        Will block untill it returns . So better to makeRPC  calls in worker thread than main or ui thread.
+        By default, the RPC calls from the client are synchronous.  Will block untill it returns . 
+        So better to make RPC  calls in worker thread than main or ui thread.
         So oneway keyword is used for making the call Asynchronous . 
         Caution : Asynchronous methods must not have out and inout arguments. 
         They must also return void.
