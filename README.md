@@ -50,8 +50,20 @@ Binder Communication a
 
 ### meaning of in,out tags in AIDL file 
 #### - in: 
-    The default mode; the client passes the parameters to the server for use.
+    The client passes the parameters to the server for use. 
+    Primitives are in by default, and cannot be otherwise.
+    This is default mode.
 #### - out: 
-    The client passes a parameter to the server, which serves as a container, discards all the attribute values, fills in the content, and then returns it to the client for further processing.
+    The client passes a parameter to the server, which serves as a container, discards all the attribute values, 
+    fills in the content, and then returns it to the client for further processing.
 #### - inout: 
-The client passes the parameters to the server, and the server can use the values of the parameters. At the same time, the client can modify the parameters. If it is a collection array, it can modify its internal sub-objects. 
+    The client passes the parameters to the server, and the server can use the values of the parameters. 
+    At the same time, the client can modify the parameters. If it is a collection array, it can modify its internal sub-objects. 
+### Meaning of Oneway:
+        By default, the RPC calls from the client are synchronous.  
+        Will block untill it returns . So better to makeRPC  calls in worker thread than main or ui thread.
+        So oneway keyword is used for making the call Asynchronous . 
+        Caution : Asynchronous methods must not have out and inout arguments. 
+        They must also return void.
+        
+
