@@ -65,5 +65,10 @@ Binder Communication a
         So oneway keyword is used for making the call Asynchronous . 
         Caution : Asynchronous methods must not have out and inout arguments. 
         They must also return void.
+##### ClassNotFoundException when bundle used with parcellable  
+        If your aidl interface includes methods that accept Bundle as arguments which is expected to contain parcelables, 
+        please ensure you set the classloader of the Bundle by calling Bundle.setClassLoader(ClassLoader) before attempting to read from the Bundle. 
+        Otherwise, you will run into ClassNotFoundException even though the parcelable is correctly defined in your application. 
         
+        EX: before reading from bundle passed via aidl : call bundle.setClassLoader(getClass().getClassLoader());
 
