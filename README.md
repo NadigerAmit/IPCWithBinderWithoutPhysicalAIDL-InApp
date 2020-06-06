@@ -33,6 +33,12 @@ An object wanting to make use of the behavior offered by a binder service
 An act of invoking an operation (i.e. a method) on a remote Binder object, which may involve sending/receiving data, over the Binder Protocol
 Parcel "Container for a message (data and object references) that can be sent through an IBinder." A unit of
 transactional data - one for the outbound request, and another for the inbound reply
+
+###  What defines what goes in a transaction? Is it a certain number of events in a given time? Or just a max number/size of events?
+In General it is decided by Binder protocol.They make use of proxies (by client) and stubs (by service). Proxies take your high-level Java/C++ method calls (requests) and convert them to Parcels (Marshalling) and submit the transaction to the Binder Kernel Driver and block. Stubs on the other hand (in the Service process) listens to the Binder Kernel Driver and unmarshalls Parcels upon receiving a callback, into rich data types/objects that the Service can understand.
+
+In case of Android Binder framwork send The data through transact() is a Parcel(It means that we can send all types of data supported by Parcel object.), stored in the Binder transaction buffer.The Binder transaction buffer has a limited fixed size, currently 1Mb, which is shared by all transactions in progress for the process. So if each message is over 200 kb, Then 5 or less running transactions will result in limit to exceed and throw TransactionTooLargeException. Consequently this exception can be thrown when there are many transactions in progress even when most of the individual transactions are of moderate size. An activity will see DeadObjectException exception if it makes use of a service running in another process that dies in the middle of performing a request. There are plenty of reasons for a process to kill in Android. 
+
 ### Marshalling
 A procedure for converting higher level applications data structures (i.e. request/response parameters) into
 parcels for the purposes of embedding them into Binder transactions
